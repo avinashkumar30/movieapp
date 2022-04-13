@@ -1,12 +1,4 @@
-//
-//  TVMazeData.swift
-//  TVMazeAPI
-//
-//  Created by Avinash Kumar on 04/04/22.
-//
-
 import Foundation
-
 
 struct ShowDetails {
     var score: Double
