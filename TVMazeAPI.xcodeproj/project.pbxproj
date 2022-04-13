@@ -14,6 +14,7 @@
 		ACA14D5927FAD8C300DDDD2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACA14D5827FAD8C300DDDD2C /* Assets.xcassets */; };
 		ACA14D5C27FAD8C300DDDD2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACA14D5A27FAD8C300DDDD2C /* LaunchScreen.storyboard */; };
 		ACA14D6627FAD93900DDDD2C /* TVMazeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA14D6527FAD93900DDDD2C /* TVMazeData.swift */; };
+		ACA4279B28069B2A00BA9D33 /* TVMazeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA4279A28069B2A00BA9D33 /* TVMazeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		ACA14D5B27FAD8C300DDDD2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACA14D5D27FAD8C300DDDD2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACA14D6527FAD93900DDDD2C /* TVMazeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeData.swift; sourceTree = "<group>"; };
+		ACA4279A28069B2A00BA9D33 /* TVMazeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				ACA14D4F27FAD8C100DDDD2C /* AppDelegate.swift */,
 				ACA14D5127FAD8C100DDDD2C /* SceneDelegate.swift */,
 				ACA14D5327FAD8C100DDDD2C /* ViewController.swift */,
+				ACA4279A28069B2A00BA9D33 /* TVMazeManager.swift */,
 				ACA14D6527FAD93900DDDD2C /* TVMazeData.swift */,
 				ACA14D5527FAD8C100DDDD2C /* Main.storyboard */,
 				ACA14D5827FAD8C300DDDD2C /* Assets.xcassets */,
@@ -143,6 +146,7 @@
 			files = (
 				ACA14D5427FAD8C100DDDD2C /* ViewController.swift in Sources */,
 				ACA14D6627FAD93900DDDD2C /* TVMazeData.swift in Sources */,
+				ACA4279B28069B2A00BA9D33 /* TVMazeManager.swift in Sources */,
 				ACA14D5027FAD8C100DDDD2C /* AppDelegate.swift in Sources */,
 				ACA14D5227FAD8C100DDDD2C /* SceneDelegate.swift in Sources */,
 			);
