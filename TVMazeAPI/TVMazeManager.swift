@@ -26,7 +26,6 @@ class TVMazeManager {
                 return
             }
             do{
-                //here dataResponse received from a network request
                 let jsonResponse = try JSONSerialization.jsonObject(with:
                                      dataResponse, options: [])
                 if let jsonArray = jsonResponse as? [[String: Any]]  {
