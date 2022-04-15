@@ -19,7 +19,6 @@ struct ShowDetails {
         } else {
             imageURL = "https://cdn-www.gamerevolution.com/assets/uploads/2021/09/Plex-unexpected-error-message-fix-640x360.jpg"
         }
-        print(imageURL)
     }
 }
 

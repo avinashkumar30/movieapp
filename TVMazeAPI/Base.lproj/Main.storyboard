@@ -123,24 +123,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w5H-Gz-aAr">
-                                <rect key="frame" x="10" y="399" width="394" height="453"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="453" id="V8Q-nM-XiH"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f7i-sI-mUc">
+                                <rect key="frame" x="10" y="242" width="394" height="610"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OgA-u2-MHl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="w5H-Gz-aAr" firstAttribute="leading" secondItem="OgA-u2-MHl" secondAttribute="leading" constant="10" id="GKw-PP-20r"/>
+                            <constraint firstItem="OgA-u2-MHl" firstAttribute="bottom" secondItem="f7i-sI-mUc" secondAttribute="bottom" constant="10" id="68t-Yi-3xP"/>
+                            <constraint firstItem="f7i-sI-mUc" firstAttribute="top" secondItem="XgN-Ou-Rq2" secondAttribute="bottom" constant="30" id="78X-Ss-6xv"/>
+                            <constraint firstItem="f7i-sI-mUc" firstAttribute="leading" secondItem="OgA-u2-MHl" secondAttribute="leading" constant="10" id="KnT-UY-e3S"/>
                             <constraint firstItem="AVO-o4-2MB" firstAttribute="leading" secondItem="OgA-u2-MHl" secondAttribute="leading" constant="10" id="OdI-Gs-FBL"/>
                             <constraint firstItem="XgN-Ou-Rq2" firstAttribute="top" secondItem="AVO-o4-2MB" secondAttribute="bottom" constant="54" id="Pue-kM-iE4"/>
-                            <constraint firstItem="OgA-u2-MHl" firstAttribute="bottom" secondItem="w5H-Gz-aAr" secondAttribute="bottom" constant="10" id="QnI-P9-lfT"/>
+                            <constraint firstItem="OgA-u2-MHl" firstAttribute="trailing" secondItem="f7i-sI-mUc" secondAttribute="trailing" constant="10" id="Qro-NQ-KAo"/>
                             <constraint firstItem="AVO-o4-2MB" firstAttribute="top" secondItem="OgA-u2-MHl" secondAttribute="top" constant="10" id="SlN-7J-XPx"/>
-                            <constraint firstItem="OgA-u2-MHl" firstAttribute="trailing" secondItem="w5H-Gz-aAr" secondAttribute="trailing" constant="10" id="aay-6J-cCA"/>
                             <constraint firstItem="XgN-Ou-Rq2" firstAttribute="leading" secondItem="OgA-u2-MHl" secondAttribute="leading" constant="10" id="bWv-wj-5uI"/>
-                            <constraint firstItem="w5H-Gz-aAr" firstAttribute="top" secondItem="XgN-Ou-Rq2" secondAttribute="bottom" constant="187" id="k33-pm-ScD"/>
+                            <constraint firstItem="f7i-sI-mUc" firstAttribute="leading" secondItem="OgA-u2-MHl" secondAttribute="leading" constant="10" id="dbn-iP-b79"/>
                             <constraint firstItem="OgA-u2-MHl" firstAttribute="trailing" secondItem="XgN-Ou-Rq2" secondAttribute="trailing" constant="10" id="pbk-Wv-JsX"/>
                             <constraint firstItem="OgA-u2-MHl" firstAttribute="trailing" secondItem="AVO-o4-2MB" secondAttribute="trailing" constant="10" id="y2f-bJ-ptz"/>
                         </constraints>
@@ -149,7 +147,7 @@
                     <connections>
                         <outlet property="name" destination="AVO-o4-2MB" id="1c6-CA-Gmy"/>
                         <outlet property="rating" destination="XgN-Ou-Rq2" id="PTJ-6w-PO9"/>
-                        <outlet property="showImage" destination="w5H-Gz-aAr" id="iu9-Kl-2rc"/>
+                        <outlet property="showImage" destination="f7i-sI-mUc" id="xNu-LH-TFs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pJ4-J2-8Np" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
