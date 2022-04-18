@@ -15,6 +15,8 @@
 		ACA14D5C27FAD8C300DDDD2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACA14D5A27FAD8C300DDDD2C /* LaunchScreen.storyboard */; };
 		ACA14D6627FAD93900DDDD2C /* TVMazeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA14D6527FAD93900DDDD2C /* TVMazeData.swift */; };
 		ACA4279B28069B2A00BA9D33 /* TVMazeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA4279A28069B2A00BA9D33 /* TVMazeManager.swift */; };
+		ACA4279D2806D01600BA9D33 /* ShowDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA4279C2806D01600BA9D33 /* ShowDetailVC.swift */; };
+		ACA427A4280D870100BA9D33 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACA427A2280D870100BA9D33 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		ACA14D5D27FAD8C300DDDD2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACA14D6527FAD93900DDDD2C /* TVMazeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeData.swift; sourceTree = "<group>"; };
 		ACA4279A28069B2A00BA9D33 /* TVMazeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeManager.swift; sourceTree = "<group>"; };
+		ACA4279C2806D01600BA9D33 /* ShowDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailVC.swift; sourceTree = "<group>"; };
+		ACA427A3280D870100BA9D33 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,14 +67,24 @@
 				ACA14D4F27FAD8C100DDDD2C /* AppDelegate.swift */,
 				ACA14D5127FAD8C100DDDD2C /* SceneDelegate.swift */,
 				ACA14D5327FAD8C100DDDD2C /* ViewController.swift */,
+				ACA4279C2806D01600BA9D33 /* ShowDetailVC.swift */,
 				ACA4279A28069B2A00BA9D33 /* TVMazeManager.swift */,
 				ACA14D6527FAD93900DDDD2C /* TVMazeData.swift */,
 				ACA14D5527FAD8C100DDDD2C /* Main.storyboard */,
+				ACA427A5280D888900BA9D33 /* DataModel */,
 				ACA14D5827FAD8C300DDDD2C /* Assets.xcassets */,
 				ACA14D5A27FAD8C300DDDD2C /* LaunchScreen.storyboard */,
 				ACA14D5D27FAD8C300DDDD2C /* Info.plist */,
 			);
 			path = TVMazeAPI;
+			sourceTree = "<group>";
+		};
+		ACA427A5280D888900BA9D33 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				ACA427A2280D870100BA9D33 /* DataModel.xcdatamodeld */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,8 +158,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACA4279D2806D01600BA9D33 /* ShowDetailVC.swift in Sources */,
 				ACA14D5427FAD8C100DDDD2C /* ViewController.swift in Sources */,
 				ACA14D6627FAD93900DDDD2C /* TVMazeData.swift in Sources */,
+				ACA427A4280D870100BA9D33 /* DataModel.xcdatamodeld in Sources */,
 				ACA4279B28069B2A00BA9D33 /* TVMazeManager.swift in Sources */,
 				ACA14D5027FAD8C100DDDD2C /* AppDelegate.swift in Sources */,
 				ACA14D5227FAD8C100DDDD2C /* SceneDelegate.swift in Sources */,
@@ -368,6 +384,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ACA427A2280D870100BA9D33 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ACA427A3280D870100BA9D33 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = ACA427A3280D870100BA9D33 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = ACA14D4427FAD8C100DDDD2C /* Project object */;
 }
