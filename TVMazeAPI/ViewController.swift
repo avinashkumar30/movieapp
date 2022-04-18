@@ -1,15 +1,23 @@
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
 
-    let tvMazeManager = TVMazeManager()
     var arr = [ShowDetails]()
+    var favoriteShows = TVMazeManager().favoriteShows
+
+    let tvMazeManager = TVMazeManager()
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var showName: UITextField!
     @IBOutlet weak var tableView: UITableView!
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+        print(dataFilePath)
+        loadItems()
     }
     
     @IBAction func Search(_ sender: Any) {
@@ -18,7 +26,6 @@ class ViewController: UIViewController {
         showName.text = ""
     }
 }
-
 
 // MARK: - TableView Delegate Methods
 
@@ -48,4 +55,24 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             destination.shows = arr[(tableView.indexPathForSelectedRow?.row)!]
         }
     }
+    
+    //MARK: - Model Manipulation methods
+
+    func saveItems() {
+        do{
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+    }
+
+    func loadItems() {
+        let request: NSFetchRequest<Show> = Show.fetchRequest()
+        do {
+            favoriteShows = try context.fetch(request)
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+    }
 }
+

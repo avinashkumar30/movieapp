@@ -6,9 +6,13 @@
 //
 
 import Foundation
+import UIKit
+
 class TVMazeManager {
     let showURL = "https://api.tvmaze.com/search/shows"
     var arr = [ShowDetails]()
+    var favoriteShows = [Show]()
+    
     func fetchShows(queryParam: String) -> [ShowDetails] {
         let urlString = "\(showURL)?q=\(queryParam)"
         performRequest(urlString: urlString)
@@ -39,5 +43,4 @@ class TVMazeManager {
         }
         task.resume()
     }
-    
 }

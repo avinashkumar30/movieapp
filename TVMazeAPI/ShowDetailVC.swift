@@ -9,10 +9,27 @@ import UIKit
 
 class ShowDetailVC: UIViewController {
     var shows: ShowDetails?
-    
+   
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var showImage: UIImageView!
     @IBOutlet weak var rating: UILabel!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    @IBAction func AddToFavorites(_ sender: UIButton) {
+        let tvMazeManager = TVMazeManager()
+        let currentSelectedShow = shows!
+        let newFavoriteShow = Show(context: context)
+        newFavoriteShow.score = currentSelectedShow.score
+        newFavoriteShow.imageURL = currentSelectedShow.imageURL
+        newFavoriteShow.name = currentSelectedShow.name
+        tvMazeManager.favoriteShows.append(newFavoriteShow)
+        do{
+            try context.save()
+        } catch {
+            print("Error saving the data")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,4 +44,5 @@ class ShowDetailVC: UIViewController {
             }
         }
     }
+    
 }
