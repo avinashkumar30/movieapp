@@ -15,14 +15,17 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
-        print(dataFilePath)
+//        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+//        print(dataFilePath)
         loadItems()
     }
     
     @IBAction func Search(_ sender: Any) {
-        arr = tvMazeManager.fetchShows(queryParam: showName.text ?? "boys")
-        tableView.reloadData()
+        arr = tvMazeManager.fetchShows(queryParam: showName.text ?? "boys") { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
         showName.text = ""
     }
 }
