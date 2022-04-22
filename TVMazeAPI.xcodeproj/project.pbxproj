@@ -45,22 +45,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AC304CF32810336400BDBD41 /* ViewControllers */ = {
+		AC5E730E2812C73E002E6BDA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				ACA14D5327FAD8C100DDDD2C /* ViewController.swift */,
 				ACA4279C2806D01600BA9D33 /* ShowDetailVC.swift */,
+				ACA14D5327FAD8C100DDDD2C /* ViewController.swift */,
 			);
-			path = ViewControllers;
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		AC304CF4281033F900BDBD41 /* Supporting Files */ = {
+		AC5E730F2812C75C002E6BDA /* Network Manager */ = {
 			isa = PBXGroup;
 			children = (
+				ACA4279A28069B2A00BA9D33 /* TVMazeManager.swift */,
+			);
+			path = "Network Manager";
+			sourceTree = "<group>";
+		};
+		AC5E73102812C76F002E6BDA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ACA14D5527FAD8C100DDDD2C /* Main.storyboard */,
 				ACA14D5A27FAD8C300DDDD2C /* LaunchScreen.storyboard */,
 				ACA14D5827FAD8C300DDDD2C /* Assets.xcassets */,
 			);
-			path = "Supporting Files";
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		ACA14D4327FAD8C100DDDD2C = {
@@ -84,11 +93,10 @@
 			children = (
 				ACA14D4F27FAD8C100DDDD2C /* AppDelegate.swift */,
 				ACA14D5127FAD8C100DDDD2C /* SceneDelegate.swift */,
-				ACA14D5527FAD8C100DDDD2C /* Main.storyboard */,
-				AC304CF32810336400BDBD41 /* ViewControllers */,
-				ACA4279A28069B2A00BA9D33 /* TVMazeManager.swift */,
+				AC5E73102812C76F002E6BDA /* Resources */,
+				AC5E730E2812C73E002E6BDA /* View Controllers */,
+				AC5E730F2812C75C002E6BDA /* Network Manager */,
 				ACA427A5280D888900BA9D33 /* DataModel */,
-				AC304CF4281033F900BDBD41 /* Supporting Files */,
 				ACA14D5D27FAD8C300DDDD2C /* Info.plist */,
 			);
 			path = TVMazeAPI;

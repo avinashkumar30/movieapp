@@ -17,6 +17,7 @@ class ShowDetailVC: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBAction func AddToFavorites(_ sender: UIButton) {
+        print("clicked")
         let tvMazeManager = TVMazeManager()
         let currentSelectedShow = shows!
         let newFavoriteShow = Show(context: context)
@@ -24,6 +25,7 @@ class ShowDetailVC: UIViewController {
         newFavoriteShow.imageURL = currentSelectedShow.imageURL
         newFavoriteShow.name = currentSelectedShow.name
         tvMazeManager.favoriteShows.append(newFavoriteShow)
+        sender.self.titleLabel = UIFont(name: "♥️", size: 20)
         do{
             try context.save()
         } catch {
