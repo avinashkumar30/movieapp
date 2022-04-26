@@ -5,6 +5,7 @@ struct ShowDetails {
     var score: Double
     var name: String
     var imageURL: String
+    var isLiked: Bool
     
     init(_ dictionary: Dictionary<String,Any>) {
         self.score = dictionary["score"] as? Double ??  0
@@ -17,6 +18,7 @@ struct ShowDetails {
         } else {
             imageURL = "https://cdn-www.gamerevolution.com/assets/uploads/2021/09/Plex-unexpected-error-message-fix-640x360.jpg"
         }
+        self.isLiked = false
     }
 }
 

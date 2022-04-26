@@ -5,7 +5,7 @@ class ViewController: UIViewController {
 
     var arr = [ShowDetails]()
     var favoriteShows = TVMazeManager().favoriteShows
-
+    
     let tvMazeManager = TVMazeManager()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -21,9 +21,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func Search(_ sender: Any) {
-        arr = tvMazeManager.fetchShows(queryParam: showName.text ?? "boys")
-        tableView.reloadData()
-        showName.text = ""
+        arr = tvMazeManager.fetchShows(queryParam: showName.text ?? "boys") { [weak self] _ in
+           DispatchQueue.main.async {
+               self?.tableView.reloadData()
+           }
+       }
+       showName.text = ""
     }
 }
 

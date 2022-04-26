@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ShowDetailVC: UIViewController {
     var shows: ShowDetails?
@@ -20,12 +21,42 @@ class ShowDetailVC: UIViewController {
         print("clicked")
         let tvMazeManager = TVMazeManager()
         let currentSelectedShow = shows!
+        var alreadyFavorite = false
         let newFavoriteShow = Show(context: context)
         newFavoriteShow.score = currentSelectedShow.score
         newFavoriteShow.imageURL = currentSelectedShow.imageURL
         newFavoriteShow.name = currentSelectedShow.name
-        tvMazeManager.favoriteShows.append(newFavoriteShow)
-        sender.self.titleLabel = UIFont(name: "♥️", size: 20)
+//        newFavoriteShow.isLiked = true
+        //searching if show already exists in the favoriteShows
+        for show in tvMazeManager.favoriteShows {
+            if show == newFavoriteShow {
+                alreadyFavorite = true
+                break
+            }
+        }
+        
+        if sender.currentTitle == "♡" {
+            DispatchQueue.main.async {
+                sender.setTitle("♥️", for: .normal)
+            }
+            
+            //if not then only add it
+            if !alreadyFavorite {
+                tvMazeManager.favoriteShows.append(newFavoriteShow)
+            }
+                
+        } else {
+            for _ in tvMazeManager.favoriteShows {
+                tvMazeManager.favoriteShows.removeAll {
+                    show in show == newFavoriteShow
+                }
+            }
+            
+            DispatchQueue.main.async {
+                sender.setTitle("♡", for: .normal)
+            }
+        }
+        
         do{
             try context.save()
         } catch {
@@ -48,3 +79,4 @@ class ShowDetailVC: UIViewController {
     }
     
 }
+

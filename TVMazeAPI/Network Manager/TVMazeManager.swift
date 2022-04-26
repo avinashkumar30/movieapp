@@ -13,13 +13,15 @@ class TVMazeManager {
     var arr = [ShowDetails]()
     var favoriteShows = [Show]()
     
-    func fetchShows(queryParam: String) -> [ShowDetails] {
+    func fetchShows(queryParam: String, completionHandler: @escaping ([ShowDetails]) -> ()) -> [ShowDetails]  {
         let urlString = "\(showURL)?q=\(queryParam)"
-        performRequest(urlString: urlString)
+        performRequest(urlString: urlString) { [weak self] arr in
+            completionHandler(self!.arr)
+        }
         return arr
     }
     
-    func performRequest(urlString: String) {
+    func performRequest(urlString: String, completionHandler: @escaping ([ShowDetails]) -> ()) {
         guard let url = URL(string: urlString) else {
             return
         }
@@ -36,6 +38,7 @@ class TVMazeManager {
                     for dic in jsonArray {
                         self.arr.append(ShowDetails(dic))
                     }
+                    completionHandler(self.arr)
                 }
             } catch let parsingError {
                 print("Error", parsingError)

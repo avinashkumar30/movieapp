@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC560F5228182005002E0D4F /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC560F5028182005002E0D4F /* DataModel.xcdatamodeld */; };
 		ACA14D5027FAD8C100DDDD2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA14D4F27FAD8C100DDDD2C /* AppDelegate.swift */; };
 		ACA14D5227FAD8C100DDDD2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA14D5127FAD8C100DDDD2C /* SceneDelegate.swift */; };
 		ACA14D5427FAD8C100DDDD2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA14D5327FAD8C100DDDD2C /* ViewController.swift */; };
@@ -16,10 +17,10 @@
 		ACA14D6627FAD93900DDDD2C /* TVMazeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA14D6527FAD93900DDDD2C /* TVMazeData.swift */; };
 		ACA4279B28069B2A00BA9D33 /* TVMazeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA4279A28069B2A00BA9D33 /* TVMazeManager.swift */; };
 		ACA4279D2806D01600BA9D33 /* ShowDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA4279C2806D01600BA9D33 /* ShowDetailVC.swift */; };
-		ACA427A4280D870100BA9D33 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACA427A2280D870100BA9D33 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC560F5128182005002E0D4F /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		ACA14D4C27FAD8C100DDDD2C /* TVMazeAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVMazeAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACA14D4F27FAD8C100DDDD2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACA14D5127FAD8C100DDDD2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,7 +32,6 @@
 		ACA14D6527FAD93900DDDD2C /* TVMazeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeData.swift; sourceTree = "<group>"; };
 		ACA4279A28069B2A00BA9D33 /* TVMazeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeManager.swift; sourceTree = "<group>"; };
 		ACA4279C2806D01600BA9D33 /* ShowDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailVC.swift; sourceTree = "<group>"; };
-		ACA427A3280D870100BA9D33 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				ACA14D6527FAD93900DDDD2C /* TVMazeData.swift */,
-				ACA427A2280D870100BA9D33 /* DataModel.xcdatamodeld */,
+				AC560F5028182005002E0D4F /* DataModel.xcdatamodeld */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -185,7 +185,7 @@
 				ACA4279D2806D01600BA9D33 /* ShowDetailVC.swift in Sources */,
 				ACA14D5427FAD8C100DDDD2C /* ViewController.swift in Sources */,
 				ACA14D6627FAD93900DDDD2C /* TVMazeData.swift in Sources */,
-				ACA427A4280D870100BA9D33 /* DataModel.xcdatamodeld in Sources */,
+				AC560F5228182005002E0D4F /* DataModel.xcdatamodeld in Sources */,
 				ACA4279B28069B2A00BA9D33 /* TVMazeManager.swift in Sources */,
 				ACA14D5027FAD8C100DDDD2C /* AppDelegate.swift in Sources */,
 				ACA14D5227FAD8C100DDDD2C /* SceneDelegate.swift in Sources */,
@@ -410,12 +410,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		ACA427A2280D870100BA9D33 /* DataModel.xcdatamodeld */ = {
+		AC560F5028182005002E0D4F /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				ACA427A3280D870100BA9D33 /* DataModel.xcdatamodel */,
+				AC560F5128182005002E0D4F /* DataModel.xcdatamodel */,
 			);
-			currentVersion = ACA427A3280D870100BA9D33 /* DataModel.xcdatamodel */;
+			currentVersion = AC560F5128182005002E0D4F /* DataModel.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
