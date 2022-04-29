@@ -13,12 +13,11 @@ class TVMazeManager {
     var arr = [ShowDetails]()
     var favoriteShows = [Show]()
     
-    func fetchShows(queryParam: String, completionHandler: @escaping ([ShowDetails]) -> ()) -> [ShowDetails]  {
+    func fetchShows(queryParam: String, completionHandler: @escaping ([ShowDetails]) -> ()) {
         let urlString = "\(showURL)?q=\(queryParam)"
         performRequest(urlString: urlString) { [weak self] arr in
             completionHandler(self!.arr)
         }
-        return arr
     }
     
     func performRequest(urlString: String, completionHandler: @escaping ([ShowDetails]) -> ()) {

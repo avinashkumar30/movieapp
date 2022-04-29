@@ -10,7 +10,8 @@ import CoreData
 
 class ShowDetailVC: UIViewController {
     var shows: ShowDetails?
-   
+    var likeButton: UIButton!
+    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var showImage: UIImageView!
     @IBOutlet weak var rating: UILabel!
@@ -19,41 +20,35 @@ class ShowDetailVC: UIViewController {
     
     @IBAction func AddToFavorites(_ sender: UIButton) {
         print("clicked")
+        likeButton = sender
         let tvMazeManager = TVMazeManager()
-        let currentSelectedShow = shows!
-        var alreadyFavorite = false
+        var currentSelectedShow = shows!
+        
+        if currentSelectedShow.isLiked {
+            currentSelectedShow.isLiked = false
+            sender.setTitle("♡", for: .normal)
+        }
+        
         let newFavoriteShow = Show(context: context)
+        
+        var alreadyFavorite = false
         newFavoriteShow.score = currentSelectedShow.score
         newFavoriteShow.imageURL = currentSelectedShow.imageURL
         newFavoriteShow.name = currentSelectedShow.name
-//        newFavoriteShow.isLiked = true
-        //searching if show already exists in the favoriteShows
-        for show in tvMazeManager.favoriteShows {
-            if show == newFavoriteShow {
-                alreadyFavorite = true
-                break
-            }
-        }
+        newFavoriteShow.isLiked = true
+        currentSelectedShow.isLiked = true
         
-        if sender.currentTitle == "♡" {
-            DispatchQueue.main.async {
-                sender.setTitle("♥️", for: .normal)
-            }
-            
-            //if not then only add it
-            if !alreadyFavorite {
-                tvMazeManager.favoriteShows.append(newFavoriteShow)
-            }
-                
-        } else {
-            for _ in tvMazeManager.favoriteShows {
-                tvMazeManager.favoriteShows.removeAll {
-                    show in show == newFavoriteShow
+        if newFavoriteShow.isLiked {
+            for show in tvMazeManager.favoriteShows {
+                if show.name == currentSelectedShow.name {
+                    alreadyFavorite = true
+                    break
                 }
             }
             
-            DispatchQueue.main.async {
-                sender.setTitle("♡", for: .normal)
+            if !alreadyFavorite {
+                tvMazeManager.favoriteShows.append(newFavoriteShow)
+                sender.setTitle("♥️", for: .normal)
             }
         }
         
@@ -63,7 +58,6 @@ class ShowDetailVC: UIViewController {
             print("Error saving the data")
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         name.text = shows?.name

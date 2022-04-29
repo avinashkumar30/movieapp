@@ -2,12 +2,10 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController {
-
-    var arr = [ShowDetails]()
+    
+    var shows = [ShowDetails]()
     var favoriteShows = TVMazeManager().favoriteShows
-    
     let tvMazeManager = TVMazeManager()
-    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var showName: UITextField!
@@ -16,13 +14,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
-        print(dataFilePath)
+//        print(dataFilePath)
         loadItems()
     }
     
     @IBAction func Search(_ sender: Any) {
-        arr = tvMazeManager.fetchShows(queryParam: showName.text ?? "boys") { [weak self] _ in
-           DispatchQueue.main.async {
+        tvMazeManager.fetchShows(queryParam: showName.text ?? "boys") { [weak self] showData in
+            self?.shows = showData
+            DispatchQueue.main.async {
                self?.tableView.reloadData()
            }
        }
@@ -35,27 +34,26 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arr.count
+        return shows.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = self.arr[indexPath.row].name
+        cell.textLabel?.text = shows[indexPath.row].name
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "showdetails", sender: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 70
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ShowDetailVC {
-            destination.shows = arr[(tableView.indexPathForSelectedRow?.row)!]
+            destination.shows = shows[(tableView.indexPathForSelectedRow?.row)!]
         }
     }
     

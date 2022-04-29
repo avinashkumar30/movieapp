@@ -2,10 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Show" representedClassName=".Show" syncable="YES" codeGenerationType="class">
         <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="isLiked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="score" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="score" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Show" positionX="-63" positionY="-18" width="128" height="74"/>
+        <element name="Show" positionX="-54" positionY="-9" width="128" height="89"/>
     </elements>
 </model>
