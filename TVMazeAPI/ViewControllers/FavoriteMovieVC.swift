@@ -23,6 +23,13 @@ class FavoriteMovieVC: UIViewController {
             self?.shows = ShowDetails
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadItems { [weak self] ShowDetails in
+            self?.shows = ShowDetails
+        }
+    }
 }
 
 // MARK :- UICollectionViewDataSource, UICollectionViewDelegate
@@ -37,12 +44,12 @@ extension FavoriteMovieVC: UICollectionViewDataSource, UICollectionViewDelegate 
         DispatchQueue.main.async {
             let data = try? Data(contentsOf: url!)
             DispatchQueue.main.async {
-                cell.movieImageView.image = UIImage(data: data!)
+                cell.movieImage.image = UIImage(data: data!)
             }
         }
         cell.movieTitle.text = shows[indexPath.row].name
         return cell
-    }    
+    }
 }
 
 // MARK :- UICollectionViewDelegateFlowLayout

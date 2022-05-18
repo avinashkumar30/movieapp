@@ -4,8 +4,9 @@ import CoreData
 class ViewController: UIViewController {
     
     var shows = [ShowDetails]()
-    var favoriteShows = TVMazeManager().favoriteShows
     let tvMazeManager = TVMazeManager()
+    var favoriteShows = TVMazeManager().favoriteShows
+    let trendingMovieManager = TrendingMovieManager()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var showName: UITextField!
@@ -13,9 +14,10 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+//        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
 //        print(dataFilePath)
         loadItems()
+        trendingMovieManager.fetchTrendingMovies()
     }
     
     @IBAction func Search(_ sender: Any) {

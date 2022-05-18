@@ -8,17 +8,18 @@ struct ShowDetails {
     var isLiked: Bool
     
     init(_ dictionary: Dictionary<String,Any>) {
-        self.score = dictionary["score"] as? Double ??  0
         let show = dictionary["show"] as! Dictionary<String,Any>
-        self.name = (show["name"] as! String)
         let images = show["image"] as? Dictionary<String,Any>
+        
+        self.score = dictionary["score"] as? Double ??  0
+        self.name = (show["name"] as! String)
+        self.isLiked = false
         
         if let imagePath = images as? Dictionary<String,String> {
             imageURL = imagePath["medium"]!
         } else {
             imageURL = "https://cdn-www.gamerevolution.com/assets/uploads/2021/09/Plex-unexpected-error-message-fix-640x360.jpg"
         }
-        self.isLiked = false
     }
 }
 

@@ -24,10 +24,10 @@ class ShowDetailVC: UIViewController {
         let tvMazeManager = TVMazeManager()
         var currentSelectedShow = shows!
         
-        if currentSelectedShow.isLiked {
-            currentSelectedShow.isLiked = false
-            sender.setTitle("♡", for: .normal)
-        }
+//        if currentSelectedShow.isLiked {
+//            currentSelectedShow.isLiked = false
+//            sender.setTitle("♡", for: .normal)
+//        }
         
         let newFavoriteShow = Show(context: context)
         
