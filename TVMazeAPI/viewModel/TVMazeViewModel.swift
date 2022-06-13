@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TVMazeManager {
+class TVMazeViewModel {
     let showURL = "https://api.tvmaze.com/search/shows"
     var arr = [ShowDetails]()
     var favoriteShows = [Show]()
@@ -24,6 +24,7 @@ class TVMazeManager {
         guard let url = URL(string: urlString) else {
             return
         }
+        
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             guard let dataResponse = data, error == nil else {

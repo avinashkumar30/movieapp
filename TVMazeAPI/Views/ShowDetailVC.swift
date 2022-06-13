@@ -9,6 +9,9 @@ import UIKit
 import CoreData
 
 class ShowDetailVC: UIViewController {
+    let databaseManager = DataBaseManager()
+    let tvMazeViewModel = TVMazeViewModel()
+    
     var shows: ShowDetails?
     var likeButton: UIButton!
     
@@ -16,22 +19,12 @@ class ShowDetailVC: UIViewController {
     @IBOutlet weak var showImage: UIImageView!
     @IBOutlet weak var rating: UILabel!
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     @IBAction func AddToFavorites(_ sender: UIButton) {
-        print("clicked")
         likeButton = sender
-        let tvMazeManager = TVMazeManager()
         var currentSelectedShow = shows!
-        
-//        if currentSelectedShow.isLiked {
-//            currentSelectedShow.isLiked = false
-//            sender.setTitle("♡", for: .normal)
-//        }
-        
-        let newFavoriteShow = Show(context: context)
-        
         var alreadyFavorite = false
+        
+        let newFavoriteShow = Show(context: databaseManager.context)
         newFavoriteShow.score = currentSelectedShow.score
         newFavoriteShow.imageURL = currentSelectedShow.imageURL
         newFavoriteShow.name = currentSelectedShow.name
@@ -39,7 +32,7 @@ class ShowDetailVC: UIViewController {
         currentSelectedShow.isLiked = true
         
         if newFavoriteShow.isLiked {
-            for show in tvMazeManager.favoriteShows {
+            for show in tvMazeViewModel.favoriteShows {
                 if show.name == currentSelectedShow.name {
                     alreadyFavorite = true
                     break
@@ -47,30 +40,32 @@ class ShowDetailVC: UIViewController {
             }
             
             if !alreadyFavorite {
-                tvMazeManager.favoriteShows.append(newFavoriteShow)
+                tvMazeViewModel.favoriteShows.append(newFavoriteShow)
                 sender.setTitle("♥️", for: .normal)
             }
         }
         
-        do{
-            try context.save()
-        } catch {
-            print("Error saving the data")
-        }
+        //saving favorites to CoreData
+        databaseManager.saveItems()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         name.text = shows?.name
         rating.text = "Rating: \(shows?.score ?? 0)"
         
-        let url = URL(string: shows!.imageURL)
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: url!)
-            DispatchQueue.main.async {
-                self.showImage.image = UIImage(data: data!)
+        //using image url to show image
+        if let shows = shows {
+            if let url = URL(string: shows.imageURL) {
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: url) {
+                        DispatchQueue.main.async {
+                            self.showImage.image = UIImage(data: data)
+                        }
+                    }
+                }
             }
         }
     }
-    
 }
 

@@ -10,17 +10,17 @@ import CoreData
 
 class HomePageTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var homePageCollectionView: UICollectionView!
-//    var trendingShows = [Show]()
     var favoriteShows = [Show]()
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let dataBaseManager = DataBaseManager()
+
+    @IBOutlet weak var homePageCollectionView: UICollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         homePageCollectionView.delegate = self
         homePageCollectionView.dataSource = self
         loadItems()
+        TrendingMovieViewModel().fetchTrendingMovies()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,28 +35,33 @@ extension HomePageTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = homePageCollectionView.dequeueReusableCell(withReuseIdentifier: "HomePageTableCollectionViewCell", for: indexPath) as! HomePageCollectionViewCell
         
-        let url = URL(string: favoriteShows[indexPath.row].imageURL!)
+        guard let cell = homePageCollectionView.dequeueReusableCell(withReuseIdentifier: "HomePageTableCollectionViewCell", for: indexPath) as?  HomePageCollectionViewCell else {
+            fatalError()
+        }
         
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: url!)
+        if let url = URL(string: favoriteShows[indexPath.row].imageURL!) {
             DispatchQueue.main.async {
-                cell.movieImage.image = UIImage(data: data!)
+                if let data = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async {
+                        cell.movieImage.image = UIImage(data: data)
+                    }
+                }
             }
         }
         return cell
     }
-}
-
-// MARK :- Fetching all shows from database
-extension HomePageTableViewCell {
+    
+    
     func loadItems() {
         let request: NSFetchRequest<Show> = Show.fetchRequest()
         do {
+            let context = dataBaseManager.context
             favoriteShows = try context.fetch(request)
         } catch {
             print("Error fetching data from context \(error)")
         }
     }
+
 }
+

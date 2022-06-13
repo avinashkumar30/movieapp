@@ -9,10 +9,10 @@ import UIKit
 
 class HomePageViewController: UIViewController {
     
-    @IBOutlet weak var homePageTableView: UITableView!
-    
     let sections = ["Recommended For You", "Trending", "Favorites"]
 
+    @IBOutlet weak var homePageTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -32,7 +32,6 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
