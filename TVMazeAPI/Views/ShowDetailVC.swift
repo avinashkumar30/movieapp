@@ -10,9 +10,9 @@ import CoreData
 
 class ShowDetailVC: UIViewController {
     let databaseManager = DataBaseManager()
-    let tvMazeViewModel = TVMazeViewModel()
+    let showViewModel = ShowViewModel()
     
-    var shows: ShowDetails?
+    var shows: ShowModel?
     var likeButton: UIButton!
     
     @IBOutlet weak var name: UILabel!
@@ -32,7 +32,7 @@ class ShowDetailVC: UIViewController {
         currentSelectedShow.isLiked = true
         
         if newFavoriteShow.isLiked {
-            for show in tvMazeViewModel.favoriteShows {
+            for show in showViewModel.favoriteShows {
                 if show.name == currentSelectedShow.name {
                     alreadyFavorite = true
                     break
@@ -40,7 +40,7 @@ class ShowDetailVC: UIViewController {
             }
             
             if !alreadyFavorite {
-                tvMazeViewModel.favoriteShows.append(newFavoriteShow)
+                showViewModel.favoriteShows.append(newFavoriteShow)
                 sender.setTitle("♥️", for: .normal)
             }
         }

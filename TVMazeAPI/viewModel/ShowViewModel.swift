@@ -8,19 +8,19 @@
 import Foundation
 import UIKit
 
-class TVMazeViewModel {
+class ShowViewModel {
     let showURL = "https://api.tvmaze.com/search/shows"
-    var arr = [ShowDetails]()
+    var arr = [ShowModel]()
     var favoriteShows = [Show]()
     
-    func fetchShows(queryParam: String, completionHandler: @escaping ([ShowDetails]) -> ()) {
+    func fetchShows(queryParam: String, completionHandler: @escaping ([ShowModel]) -> ()) {
         let urlString = "\(showURL)?q=\(queryParam)"
         performRequest(urlString: urlString) { [weak self] arr in
             completionHandler(self!.arr)
         }
     }
     
-    func performRequest(urlString: String, completionHandler: @escaping ([ShowDetails]) -> ()) {
+    func performRequest(urlString: String, completionHandler: @escaping ([ShowModel]) -> ()) {
         guard let url = URL(string: urlString) else {
             return
         }
@@ -36,7 +36,7 @@ class TVMazeViewModel {
                                      dataResponse, options: [])
                 if let jsonArray = jsonResponse as? [[String: Any]]  {
                     for dic in jsonArray {
-                        self.arr.append(ShowDetails(dic))
+                        self.arr.append(ShowModel(dic))
                     }
                     completionHandler(self.arr)
                 }

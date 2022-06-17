@@ -10,7 +10,7 @@ import CoreData
 
 class FavoriteMovieVC: UIViewController {
     
-    let tvMazeViewModel = TVMazeViewModel()
+    let showViewModel = ShowViewModel()
     let databaseManager = DataBaseManager()
     
     var shows = [Show]()
@@ -24,8 +24,8 @@ class FavoriteMovieVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         MovieCollectionView.reloadData()
-        databaseManager.loadItems() { [weak self] ShowDetails in
-            self?.shows = ShowDetails
+        databaseManager.loadItems() { [weak self] ShowData in
+            self?.shows = ShowData
         }
     }
 }
@@ -52,7 +52,6 @@ extension FavoriteMovieVC: UICollectionViewDataSource, UICollectionViewDelegate 
                 }
             }
         }
-        
         cell.movieTitle.text = shows[indexPath.row].name
         return cell
     }

@@ -3,12 +3,12 @@ import CoreData
 
 class SearchViewController: UIViewController {
     
-    let tvMazeViewModel = TVMazeViewModel()
+    let showViewModel = ShowViewModel()
     let trendingMovieViewModel = TrendingMovieViewModel()
     let dataBaseManager = DataBaseManager()
     
     //storing the results in "shows" so as to iterate on it inorder to show on the tableview
-    var shows = [ShowDetails]()
+    var shows = [ShowModel]()
     
     @IBOutlet weak var showName: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -18,7 +18,7 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func Search(_ sender: Any) {
-        tvMazeViewModel.fetchShows(queryParam: showName.text ?? "boys") { [weak self] showData in
+        showViewModel.fetchShows(queryParam: showName.text ?? "boys") { [weak self] showData in
             self?.shows = showData
             DispatchQueue.main.async {
                self?.tableView.reloadData()

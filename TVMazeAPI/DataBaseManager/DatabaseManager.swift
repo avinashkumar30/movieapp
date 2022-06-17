@@ -14,9 +14,9 @@ class DataBaseManager {
     
     // MARK: - Core Data stack
 
-    var persistentContainer = NSPersistentContainer(name:"DataModel")
+    var persistentContainer = NSPersistentContainer(name : "DataModel")
     
-    let context : NSManagedObjectContext
+    let context: NSManagedObjectContext
     
     init() {
         persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in

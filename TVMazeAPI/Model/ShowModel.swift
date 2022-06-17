@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-struct ShowDetails {
+struct ShowModel {
     var score: Double
     var name: String
     var imageURL: String
