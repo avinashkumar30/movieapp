@@ -1,14 +1,9 @@
 import UIKit
 import CoreData
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     
-    let showViewModel = ShowViewModel()
-    let trendingMovieViewModel = TrendingMovieViewModel()
-    let dataBaseManager = DataBaseManager()
-    
-    //storing the results in "shows" so as to iterate on it inorder to show on the tableview
-    var shows = [ShowModel]()
+    private let showViewModel = ShowViewModel()
     
     @IBOutlet weak var showName: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -18,10 +13,9 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func Search(_ sender: Any) {
-        showViewModel.fetchShows(queryParam: showName.text ?? "boys") { [weak self] showData in
-            self?.shows = showData
+        showViewModel.fetchShows(queryParam: showName.text ?? "boys") {_ in
             DispatchQueue.main.async {
-               self?.tableView.reloadData()
+                self.tableView.reloadData()
            }
        }
        showName.text = ""
@@ -33,12 +27,12 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shows.count
+        return showViewModel.numberOfShows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = shows[indexPath.row].name
+        cell.textLabel?.text = showViewModel.getShow(indexPath: indexPath).name
         return cell
     }
     
@@ -47,7 +41,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return CGFloat(Constants.rowHeight)
     }
 }
 
@@ -55,13 +49,8 @@ extension SearchViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ShowDetailVC {
             if let index = (tableView.indexPathForSelectedRow?.row) {
-                destination.shows = shows[index]
+                destination.shows = showViewModel.getShow(index: index)
             }
         }
     }
 }
-    
-
-
-//        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
-//        print(dataFilePath)

@@ -8,19 +8,21 @@
 import UIKit
 import CoreData
 
-class HomePageTableViewCell: UITableViewCell {
+final class HomePageTableViewCell: UITableViewCell {
     
-    var favoriteShows = [Show]()
-    let dataBaseManager = DataBaseManager()
-
+    private var favoriteShows = [Show]()
+    private let dataBaseHandler = DataBaseHandler()
+    private let showViewModel = ShowViewModel()
+    
     @IBOutlet weak var homePageCollectionView: UICollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         homePageCollectionView.delegate = self
         homePageCollectionView.dataSource = self
-        loadItems()
-        TrendingMovieViewModel().fetchTrendingMovies()
+        dataBaseHandler.loadItems() { [weak self] showData in
+            self?.favoriteShows = showData
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -40,28 +42,14 @@ extension HomePageTableViewCell: UICollectionViewDataSource, UICollectionViewDel
             fatalError()
         }
         
-        if let url = URL(string: favoriteShows[indexPath.row].imageURL!) {
-            DispatchQueue.main.async {
+        if let url = URL(string: favoriteShows[indexPath.row].imageURL ?? Image.imageNotFoundURL) {
                 if let data = try? Data(contentsOf: url) {
                     DispatchQueue.main.async {
                         cell.movieImage.image = UIImage(data: data)
                     }
                 }
-            }
         }
         return cell
     }
-    
-    
-    func loadItems() {
-        let request: NSFetchRequest<Show> = Show.fetchRequest()
-        do {
-            let context = dataBaseManager.context
-            favoriteShows = try context.fetch(request)
-        } catch {
-            print("Error fetching data from context \(error)")
-        }
-    }
-
 }
 

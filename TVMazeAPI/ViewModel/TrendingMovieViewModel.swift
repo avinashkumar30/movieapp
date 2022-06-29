@@ -8,10 +8,9 @@
 import Foundation
 import UIKit
 
-class TrendingMovieViewModel {
-    let trendingMoviesURL = "https://api.themoviedb.org/3/trending/all/day?api_key=cdc953ce4c2e2684f2f49a0570adec9b"
-    
-    var trendingMovies = [Any]()
+final class TrendingMovieViewModel {
+    public let trendingMoviesURL = "\(Api.movieURL)?api_key=\(Api.api_key)"
+    public var trendingMovies = [Any]()
     
     func fetchTrendingMovies() {
         performRequest(urlString: trendingMoviesURL)
@@ -42,6 +41,7 @@ class TrendingMovieViewModel {
         do {
             let decodedData = try decoder.decode(MovieData.self, from: movieData)
             print(decodedData.results)
+            
         } catch {
             print(error)
         }

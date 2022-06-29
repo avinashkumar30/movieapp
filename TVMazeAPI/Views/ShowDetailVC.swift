@@ -8,51 +8,33 @@
 import UIKit
 import CoreData
 
-class ShowDetailVC: UIViewController {
-    let databaseManager = DataBaseManager()
-    let showViewModel = ShowViewModel()
-    
-    var shows: ShowModel?
-    var likeButton: UIButton!
-    
+final class ShowDetailVC: UIViewController {
+    private let dataBaseHandler = DataBaseHandler()
+    private let showViewModel = ShowViewModel()
+    private var likeButton: UIButton!
+    public var shows: ShowModel?
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var showImage: UIImageView!
     @IBOutlet weak var rating: UILabel!
     
     @IBAction func AddToFavorites(_ sender: UIButton) {
         likeButton = sender
-        var currentSelectedShow = shows!
-        var alreadyFavorite = false
-        
-        let newFavoriteShow = Show(context: databaseManager.context)
-        newFavoriteShow.score = currentSelectedShow.score
-        newFavoriteShow.imageURL = currentSelectedShow.imageURL
-        newFavoriteShow.name = currentSelectedShow.name
-        newFavoriteShow.isLiked = true
-        currentSelectedShow.isLiked = true
-        
-        if newFavoriteShow.isLiked {
-            for show in showViewModel.favoriteShows {
-                if show.name == currentSelectedShow.name {
-                    alreadyFavorite = true
-                    break
-                }
-            }
-            
-            if !alreadyFavorite {
-                showViewModel.favoriteShows.append(newFavoriteShow)
+        if let shows = shows {
+            if dataBaseHandler.addToFavorites(shows: shows) {
                 sender.setTitle("♥️", for: .normal)
             }
         }
         
         //saving favorites to CoreData
-        databaseManager.saveItems()
+        dataBaseHandler.saveItems()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         name.text = shows?.name
-        rating.text = "Rating: \(shows?.score ?? 0)"
+        
+        let score = Double(round(1000 * (shows?.score ?? 0) / 1000))
+        rating.text = "Rating: \(score*5)"
         
         //using image url to show image
         if let shows = shows {

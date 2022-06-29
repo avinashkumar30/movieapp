@@ -8,12 +8,11 @@
 import UIKit
 import CoreData
 
-class FavoriteMovieVC: UIViewController {
+final class FavoriteMovieVC: UIViewController {
     
-    let showViewModel = ShowViewModel()
-    let databaseManager = DataBaseManager()
-    
-    var shows = [Show]()
+    private let showViewModel = ShowViewModel()
+    private let dataBaseHandler = DataBaseHandler()
+    private var shows = [Show]()
     
     @IBOutlet weak var MovieCollectionView: UICollectionView!
     
@@ -24,7 +23,7 @@ class FavoriteMovieVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         MovieCollectionView.reloadData()
-        databaseManager.loadItems() { [weak self] ShowData in
+        dataBaseHandler.loadItems() { [weak self] ShowData in
             self?.shows = ShowData
         }
     }
@@ -43,7 +42,7 @@ extension FavoriteMovieVC: UICollectionViewDataSource, UICollectionViewDelegate 
             fatalError()
         }
         
-        if let url = URL(string: shows[indexPath.row].imageURL!) {
+        if let url = URL(string: shows[indexPath.row].imageURL ?? Image.imageNotFoundURL) {
             DispatchQueue.main.async {
                 if let data = try? Data(contentsOf: url) {
                     DispatchQueue.main.async {
